@@ -22,7 +22,6 @@ button_send.addEventListener('click', function() {
     ) {
       alert("tudo ok")
     } else {
-      alert("tem campo faltando")
     }
 
   console.log({
