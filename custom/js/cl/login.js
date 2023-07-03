@@ -2,15 +2,59 @@ let button_send = document.getElementById('button_send');
 let email = document.getElementById('email');
 let password = document.getElementById('senha');
 
-/**  
-<div class="mb-3">
-  <label class="form-label">Validation States (lite)</label>
-  <input type="text" class="form-control is-valid is-valid-lite mb-2" placeholder="Valid State..">
-  <input type="text" class="form-control is-invalid is-invalid-lite" placeholder="Invalid State..">
-</div>
-*/
+function loginCliente(email, password) {
+}
 
-button_send.addEventListener('click', function() {
+email.addEventListener('keyup', async function() {
+  let emailIsValid = await validateEmail(email.value);
+  if(emailIsValid){
+    let emailClass = document.getElementById('email').classList;
+    emailClass.value = "form-control is-valid is-valid-lite";
+  } else {
+    let emailClass = document.getElementById('email').classList;
+    emailClass.value = "form-control is-invalid is-invalid-lite";
+  }
+});
+
+email.addEventListener('focusout', async function() {
+  let emailIsValid = await validateEmail(email.value);
+  if(emailIsValid){
+    let emailClass = document.getElementById('email').classList;
+    emailClass.value = "form-control is-valid is-valid-lite";
+  } else {
+    let emailClass = document.getElementById('email').classList;
+    emailClass.value = "form-control is-invalid is-invalid-lite";
+  }
+});
+
+email.addEventListener('focusin', function() {
+  let emailClass = document.getElementById('email').classList;
+  emailClass.value = "form-control";
+});
+
+password.addEventListener('keyup', function() {
+  let passwordClass = document.getElementById('senha').classList;
+  passwordClass.value = "form-control is-valid is-valid-lite";
+});
+
+password.addEventListener('focusout', function() {
+  
+  let passwordClass = document.getElementById('senha').classList;
+  passwordClass.value = "form-control";
+
+  if(password.value.length == 0) {
+    passwordClass.value = "form-control is-invalid is-invalid-lite";
+  } else {
+    passwordClass.value = "form-control is-valid is-valid-lite";
+  }
+});
+
+password.addEventListener('focusin', function() {
+  let passwordClass = document.getElementById('senha').classList;
+  passwordClass.value = "form-control";
+});
+
+button_send.addEventListener('click', function(event) {
   password = password.value;
   email = email.value;
 
@@ -20,12 +64,17 @@ button_send.addEventListener('click', function() {
     email != "" &&
     password != ""
     ) {
-      alert("tudo ok")
-    } else {
-    }
+      let login = ENV == 'REPLIT'?
+      MockTcc.loginCliente(email, password):
+      loginCliente(email, password);
 
-  console.log({
-    email,
-    password
-  });
+      console.log(login);
+    } else {
+      let emailClass = document.getElementById('email').classList;
+      emailClass.value = "form-control is-invalid is-invalid-lite";
+
+      let passwordClass = document.getElementById('senha').classList;
+      passwordClass.value = "form-control is-invalid is-invalid-lite";
+      event.preventDefault();
+    }
 })
