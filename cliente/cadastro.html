@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>LOGIN</title>
+    <title>TCC SOLUTIONS</title>
     <!-- CSS files -->
     <link href="../dist/css/tabler.min.css?1684106062" rel="stylesheet"/>
     <link href="../dist/css/tabler-flags.min.css?1684106062" rel="stylesheet"/>
@@ -21,6 +21,8 @@
       }
     </style>
     <script src="../custom/js/enviroments.js"></script>
+    <script src="../custom/js/validations.js"></script>
+  <script src="../dist/libs/MockTcc/main.js"></script>
   </head>
   <body  class=" d-flex flex-column">
     <script src="../dist/js/demo-theme.min.js?1684106062"></script>
@@ -28,19 +30,23 @@
       <div class="container container-tight py-4">
         <form class="card card-md" action="./" method="get" autocomplete="off" novalidate>
           <div class="card-body">
-            <h2 class="card-title text-center mb-4">Cadastrar conta</h2>
+            <h2 class="card-title text-center mb-4">Cadastre-se</h2>
             <div class="mb-3">
               <label class="form-label">Nome</label>
-              <input type="text" class="form-control" placeholder="Digite seu nome...">
+              <input id="name" type="text" class="form-control" placeholder="Digite seu nome...">
             </div>
             <div class="mb-3">
               <label class="form-label">Endereço de Email</label>
-              <input type="email" class="form-control" placeholder="Digite seu e-mail...">
+              <input id="email" type="email" class="form-control" placeholder="Digite seu e-mail...">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Número de Telefone</label>
+              <input id="phone" type="text" name="input-mask" class="form-control" data-mask="(00) 00000-0000" data-mask-visible="true" placeholder="(00) 90000-0000"autocomplete="off"/>
             </div>
             <div class="mb-3">
               <label class="form-label">Senha</label>
               <div class="input-group input-group-flat">
-                <input type="password" class="form-control"  placeholder="Digite sua senha"  autocomplete="off">
+                <input id="password" type="password" class="form-control"  placeholder="Digite sua senha"  autocomplete="off">
                 <span class="input-group-text">
                   <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
@@ -50,12 +56,15 @@
             </div>
             <div class="mb-3">
               <label class="form-check">
-                <input type="checkbox" class="form-check-input"/>
-                <span class="form-check-label">Aceita os <a href="./terms-of-service.html" tabindex="-1">termos e politicas</a>.</span>
+                <input id="checkTermos" type="checkbox" class="form-check-input"/>
+                <span class="form-check-label">Aceita os <a 
+                  href="./terms-of-service.html"
+                  target="_blank"
+                  tabindex="-1"  >termos e politicas</a>.</span>
               </label>
             </div>
             <div class="form-footer">
-              <button type="submit" class="btn btn-primary w-100">Cadastrar Conta</button>
+              <button id="btn-cadastrar" type="button" class="btn btn-primary w-100">Cadastrar Conta</button>
             </div>
           </div>
         </form>
@@ -66,7 +75,8 @@
     </div>
     <!-- Libs JS -->
     <!-- Tabler Core -->
-    <script src="../custom/js/ad/login.js"></script>
+    <!--<script src="../custom/js/ad/login.js"></script>-->
+    <script src="../custom/js/cl/cadastrar-cliente.js"></script>
     <script src="../dist/js/tabler.min.js?1684106062" defer></script>
     <script src="../dist/js/demo.min.js?1684106062" defer></script>
   </body>

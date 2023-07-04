@@ -1,6 +1,7 @@
 let button_send = document.getElementById('button_send');
 let email = document.getElementById('email');
 let password = document.getElementById('senha');
+let again = document.getElementById('again');
 
 function loginCliente(email, password) {
 }
@@ -65,10 +66,25 @@ button_send.addEventListener('click', function(event) {
     password != ""
     ) {
       let login = ENV == 'REPLIT'?
-      MockTcc.loginCliente(email, password):
+      MockTcc.loginCliente({email, password}):
       loginCliente(email, password);
 
-      console.log(login);
+      if(ENV == 'REPLIT') {
+        if(login) {
+          localStorage.setItem('token', login.token);
+          localStorage.setItem('id', login._id);
+          window.location.href = 'index.html';
+        } else {
+          var myModal = new bootstrap.Modal(document.getElementById('modal-danger'), {});
+          myModal.show();
+          let emailClass = document.getElementById('email').classList;
+          emailClass.value = "form-control is-invalid is-invalid-lite";
+
+          let passwordClass = document.getElementById('senha').classList;
+          passwordClass.value = "form-control is-invalid is-invalid-lite";
+          event.preventDefault();
+        }
+      }
     } else {
       let emailClass = document.getElementById('email').classList;
       emailClass.value = "form-control is-invalid is-invalid-lite";
@@ -77,4 +93,8 @@ button_send.addEventListener('click', function(event) {
       passwordClass.value = "form-control is-invalid is-invalid-lite";
       event.preventDefault();
     }
+})
+
+again.addEventListener('click', function() {
+  window.location.reload();
 })
